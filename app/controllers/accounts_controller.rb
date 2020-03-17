@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_action :set_account, :only [:index, :show, :update :destroy]
+  before_action :set_account, :only [:edit, :show, :update, :destroy]
 
 
   def index
