@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_action :set_account, :only [:edit, :show, :update, :destroy]
+  before_action :set_account, only: [:edit, :show, :update, :destroy]
 
 
   def index
@@ -10,14 +10,16 @@ class AccountsController < ApplicationController
   end
 
   def new
-    @account = current_user_accounts.new
+    @account = current_user.accounts.new
   end
 
   def create
-    @account = current_user_accounts.new(account_params)
+    @account = current_user.accounts.new(account_params)
     if @account.save
+      flash[:success] = "Account Created"
       redirect_to accounts_path
     else
+      flash[:error] = "Account could not be created" 
       render :new
     end
   end
@@ -36,7 +38,7 @@ class AccountsController < ApplicationController
   private
 
   def account_params
-    params.require(@account).permit(:name, :balance)
+    params.require(:account).permit(:name, :balance)
   end
 
   def set_account

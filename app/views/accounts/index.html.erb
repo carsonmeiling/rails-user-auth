@@ -6,7 +6,7 @@
 <%= link_to "add account", new_account_path%>
 <h3>Your Accounts</h3>
   <ul>
-    <%@acounts.each do |account|%>
+    <%@accounts.each do |account|%>
     <li>
     <h4>Account Name:<%= account.name%></h4>
     <h4>Account Balane:$<%= account.balance%></h4>
